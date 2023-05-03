@@ -1,7 +1,7 @@
 package com.study.core.order;
 
 import com.study.core.discount.DiscountPolicy;
-import com.study.core.discount.FixDiscountPolicy;
+import com.study.core.discount.RateDiscountPolicy;
 import com.study.core.member.Member;
 import com.study.core.member.MemberRepository;
 import com.study.core.member.MemoryMemberRepository;
@@ -9,7 +9,7 @@ import com.study.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
