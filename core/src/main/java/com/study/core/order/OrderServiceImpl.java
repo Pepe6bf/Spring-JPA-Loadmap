@@ -1,0 +1,24 @@
+package com.study.core.order;
+
+import com.study.core.discount.DiscountPolicy;
+import com.study.core.member.Member;
+import com.study.core.member.MemberRepository;
+
+public class OrderServiceImpl implements OrderService {
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+    @Override
+    public Order createOrder(Long memberId, String itemName, int itemPrice) {
+        Member member = memberRepository.findById(memberId);
+        int discountPrice = discountPolicy.discount(member, itemPrice);     // SRP 를 잘 지킨 사례
+
+        return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+}
