@@ -1,1 +1,3 @@
-# spring-jpa-loadmap
+# Spring-Basic 스프링 적용하기
+
+기존 예제 프로젝트에 드디어 스프링을 적용한다.
